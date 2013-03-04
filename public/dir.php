@@ -1,5 +1,7 @@
 <?PHP 
 require "../config.inc.php";
+require "functions.inc.php";
+
 
 $dir = $_GET['dir'];
 
@@ -23,17 +25,7 @@ if(!is_dir($directoryPath)) {
 
 $files = scandir($directoryPath);
 
-/**
- * Returns the URL to a directory view  
- * @return String
- */
-function getDirectoryLink($file) {
-    return "dir.php?dir=".$file;
-}
 
-function getFileLink($file) {
-    return "file.php?file=".$file;
-}
 
 
 
@@ -43,23 +35,20 @@ include "header.inc.php";
         <table>
             <tr><td>Files</td></tr>
         <?php
+        
         foreach($files as $file) {
+            echo "<tr>";
             if($file == "." ) {
                 
             } elseif($file=="..") { 
-                $dirup = substr($dir,0, strrpos($dir, "/"));
-                echo "<tr>";
-                echo "<td>[FOLDER] <a href=\"".getDirectoryLink($dirup)."\">$file</a></td>";
-                echo "</tr>";
-            } elseif(is_dir($directoryPath."/".$file)) {
-                echo "<tr>";
-                echo "<td>[FOLDER] <a href=\"".getDirectoryLink($dir."/".$file)."\">$file</a></td>";
-                echo "</tr>";
-            }else {
-                echo "<tr>";
-                echo "<td>[FILE] <a href=\"".getFileLink($dir."/".$file)."\">$file</a></td>";
-                echo "</tr>";
+                $dirup = substr($dir,0, strrpos($dir, "/"));               
+                echo "<td> <a href=\"".getDirectoryLink($dirup)."\"><img src=\"/images/icons/chrystal/filesystems/folder_blue.png\" />$file</a></td>";                
+            } elseif(is_dir($directoryPath."/".$file)) {                
+                echo "<td><img src=\"/images/icons/chrystal/filesystems/folder_yellow.png\" /> <a href=\"".getDirectoryLink($dir."/".$file)."\">$file</a></td>";                
+            }else {                
+                echo "<td><a href=\"".getFileLink($dir."/".$file)."\"><img src=\"".fileGetIcon($file)."\" />$file</a></td>";                
             }
+            echo "</tr>";
         }
         ?>
         </table>

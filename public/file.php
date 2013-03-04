@@ -1,5 +1,6 @@
 <?PHP 
 require "../config.inc.php";
+require "functions.inc.php";
 
 $fileName = $_GET['file'];
 
@@ -19,15 +20,27 @@ if(!file_exists($filePath)) {
 include "header.inc.php";
 
  $dir = substr($fileName,0, strrpos($fileName, "/"));
+
  
+ $brush = fileGetBrush($fileName);
 ?>
-<a href="dir.php?dir=<?php echo $dir; ?>">Back <?php echo $dir; ?></a><br />
-        <pre class="brush: php"> 
+<a href="dir.php?dir=<?php echo $dir; ?>">
+    <img src="/images/icons/chrystal/filesystems/folder.png" />.. Back </a><br />
+        
+<h3>File Content</h3>
+File: <?php echo $filePath; ?>
+<hr />
+
+<pre <?php 
+//wenn für die datei ein SyntaxHightlighter Definiert ist soll hier eine CSS klasse ausgegeben werden
+if($brush) { 
+    echo "class=\"brush: $brush\""; 
+}
+?> >
         <?php
             echo file_get_contents($filePath);
         ?>
         </pre>
-
- <?php
+<?php
         include "footer.inc.php";
- ?>
+?>
