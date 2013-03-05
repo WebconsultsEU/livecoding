@@ -6,12 +6,19 @@
 function getDirectoryLink($file) {
     return "dir.php?dir=".$file;
 }
-
+/**
+ * Gets the Link to a specific file
+ * 
+ * @param type $file
+ * @return type 
+ */
 function getFileLink($file) {
+    //@TODO Download Link for not vieable files that are all files containing text
     return "file.php?file=".$file;
 }
 /**
- * Get´s the extension of a File
+ * Gets the extension of a file
+ * 
  * @param type $file 
  */
 function getFileExtension($file) {
@@ -20,7 +27,10 @@ function getFileExtension($file) {
    return $result;
 }
 /**
- * Gets Syntax Highlighter Brush for display
+ * Gets Syntax Highlighter Brush Type for display
+ * the Syntaxighlighter is a js tool supporting syntax highlighting and is called by the html tag
+ * <pre class="brush: syntaxHighlighterType">
+ * 
  * @param type $file
  * @return string|null 
  */
@@ -29,7 +39,7 @@ function fileGetBrush($file) {
     //defines available brushes for SyntaxHighlighting
     // KEY is the file ending value the brush
     $brushes = array("php" => "php",
-                     "html" => "html",
+                     "html" => "xml",
                      "sql" => "sql");
     //wenn die fileExtension in unseren brushes enthalten ist
     if(array_key_exists($fileExtension, $brushes)) {

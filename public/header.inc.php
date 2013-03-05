@@ -18,6 +18,7 @@
 
 <script type="text/javascript" src="/js/SyntaxHighlighter/shBrushPhp.js"></script>
 <script type="text/javascript" src="/js/SyntaxHighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="/js/SyntaxHighlighter/shBrushXml.js"></script>
 <script type="text/javascript">
     //<!--
     SyntaxHighlighter.all();    //-->
