@@ -16,6 +16,18 @@ function getFileLink($file) {
     //@TODO Download Link for not vieable files that are all files containing text
     return "file.php?file=".$file;
 }
+
+/**
+ * Gets the Link to a specific file Download
+ * 
+ * @param type $file
+ * @return type 
+ */
+function getDownloadLink($file) {
+    //@TODO Download Link for not vieable files that are all files containing text
+    return "download.php?file=".$file;
+}
+
 /**
  * Gets the extension of a file
  * 

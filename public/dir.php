@@ -33,7 +33,7 @@ include "header.inc.php";
 ?>
 
         <table>
-            <tr><td>Files</td></tr>
+            <tr><td>Files</td><td></td></tr>
         <?php
         
         foreach($files as $file) {
@@ -42,11 +42,14 @@ include "header.inc.php";
                 
             } elseif($file=="..") { 
                 $dirup = substr($dir,0, strrpos($dir, "/"));               
-                echo "<td> <a href=\"".getDirectoryLink($dirup)."\"><img src=\"/images/icons/chrystal/filesystems/folder_blue.png\" />$file</a></td>";                
+                echo "<td> <a href=\"".getDirectoryLink($dirup)."\"><img src=\"/images/icons/chrystal/filesystems/folder_blue.png\" />$file</a></td>
+                        <td></td>";                
             } elseif(is_dir($directoryPath."/".$file)) {                
-                echo "<td><img src=\"/images/icons/chrystal/filesystems/folder_yellow.png\" /> <a href=\"".getDirectoryLink($dir."/".$file)."\">$file</a></td>";                
+                echo "<td><img src=\"/images/icons/chrystal/filesystems/folder_yellow.png\" /> <a href=\"".getDirectoryLink($dir."/".$file)."\">$file</a></td>
+                        <td></td>";                
             }else {                
-                echo "<td><a href=\"".getFileLink($dir."/".$file)."\"><img src=\"".fileGetIcon($file)."\" />$file</a></td>";                
+                echo "<td><a href=\"".getFileLink($dir."/".$file)."\"><img src=\"".fileGetIcon($file)."\" />$file</a></td>
+                        <td><a href=\"".getDownloadLink($dir."/".$file)."\">[DWN]</a></td>";                
             }
             echo "</tr>";
         }
